@@ -1,6 +1,6 @@
 from unittest.mock import patch, MagicMock
 
-API_BASE_URL = "https://rickandmortyapi.com/api"
+API_BASE_URL = "https://spapi.dev/api"    
 
 MOCK_CARTMAN_RESPONSE = {
     "id": 11,
@@ -69,7 +69,34 @@ MOCK_CARTMAN_RESPONSE = {
         "https://spapi.dev/api/episodes/47",
         "https://spapi.dev/api/episodes/48",
         "https://spapi.dev/api/episodes/49",
-        "https://spapi.dev/api/episodes/50"
+        "https://spapi.dev/api/episodes/50",
+        "https://spapi.dev/api/episodes/51",
+        "https://spapi.dev/api/episodes/52",
+        "https://spapi.dev/api/episodes/53",
+        "https://spapi.dev/api/episodes/54",
+        "https://spapi.dev/api/episodes/55",
+        "https://spapi.dev/api/episodes/56",
+        "https://spapi.dev/api/episodes/57",
+        "https://spapi.dev/api/episodes/58",
+        "https://spapi.dev/api/episodes/59",
+        "https://spapi.dev/api/episodes/60",
+        "https://spapi.dev/api/episodes/61",
+        "https://spapi.dev/api/episodes/63",
+        "https://spapi.dev/api/episodes/64",
+        "https://spapi.dev/api/episodes/65",
+        "https://spapi.dev/api/episodes/66",
+        "https://spapi.dev/api/episodes/67",
+        "https://spapi.dev/api/episodes/68",
+        "https://spapi.dev/api/episodes/69",
+        "https://spapi.dev/api/episodes/70",
+        "https://spapi.dev/api/episodes/71",
+        "https://spapi.dev/api/episodes/72",
+        "https://spapi.dev/api/episodes/73",
+        "https://spapi.dev/api/episodes/74",
+        "https://spapi.dev/api/episodes/75",
+        "https://spapi.dev/api/episodes/76",
+        "https://spapi.dev/api/episodes/77",
+        "https://spapi.dev/api/episodes/78"
         ]
 }
 
@@ -77,12 +104,14 @@ def mock_character_get(url, **kwargs):
     mock = MagicMock()
     if url == f"{API_BASE_URL}/characters/11":
         mock.status_code = 200
-        mock.json.return_value = MOCK_CARTMAN_RESPONSE
+        mock.json.return_value = {"data": MOCK_CARTMAN_RESPONSE}
+    elif url == f"{API_BASE_URL}/characters/1":
+        mock.status_code = 200
+        mock.json.return_value = {}
     else:
         mock.status_code = 404
-        mock.json.return_value = {"error": "Character not found"}
+        mock.text = "Not Found"
     return mock
-
 def before_scenario(context, scenario):
     print(f"Starting scenario: {scenario.name}")
 
